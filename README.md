@@ -45,7 +45,9 @@ The package of `fgm.zip` contains the following files and folders:
 
 - `./addPath.m`: Adds the sub-directories into the path of Matlab.
 
-- `./demoToy.m`: A demo comparison of different graph matching methods on the synthetic dataset.
+- `./demoToy.m`: A demo comparison of different graph matching methods on the synthetic dataset where the graphs are directed.
+
+- `./demoToyU.m`: A demo comparison of different graph matching methods on the synthetic dataset where the graphs are undirected.
 
 - `./demoHouse.m`: A demo comparison of different graph matching methods on the on the [CMU House image dataset](http://vasc.ri.cmu.edu/idb/html/motion/house/).
 

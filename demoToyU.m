@@ -62,6 +62,9 @@ asgRrwm = gm(K, Ct, asgT, pars{7}{:});
 %% FGM-U
 asgFgmU = fgmU(KP, KQ, Ct, gphs, asgT, pars{8}{:});
 
+%% FGM-D
+asgFgmD = fgmD(KP, KQD, Ct, gphDs, asgT, pars{9}{:});
+
 %% print information
 fprintf('Truth : acc %.2f, obj %.2f\n', asgT.acc, asgT.obj);
 fprintf('GA    : acc %.2f, obj %.2f\n', asgGa.acc, asgGa.obj);
@@ -72,9 +75,10 @@ fprintf('IPFP-U: acc %.2f, obj %.2f\n', asgIpfpU.acc, asgIpfpU.obj);
 fprintf('IPFP-S: acc %.2f, obj %.2f\n', asgIpfpS.acc, asgIpfpS.obj);
 fprintf('RRWM  : acc %.2f, obj %.2f\n', asgRrwm.acc, asgRrwm.obj);
 fprintf('FGM-U : acc %.2f, obj %.2f\n', asgFgmU.acc, asgFgmU.obj);
+fprintf('FGM-D : acc %.2f, obj %.2f\n', asgFgmD.acc, asgFgmD.obj);
 
 %% show correspondence matrix
-asgs = {asgT, asgGa, asgPm, asgSm, asgSmac, asgIpfpU, asgIpfpS, asgRrwm, asgFgmU};
+asgs = {asgT, asgGa, asgPm, asgSm, asgSmac, asgIpfpU, asgIpfpS, asgRrwm, asgFgmU, asgFgmD};
 rows = 2; cols = 5;
 Ax = iniAx(1, rows, cols, [250 * rows, 250 * cols]);
 shAsgX(asgs, Ax, ['Truth' algs]);
