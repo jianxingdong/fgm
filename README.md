@@ -21,10 +21,10 @@ Installation
 ============
 
 1. Download the code via `git clone https://github.com/zhfe99/fgm` or from this [link](https://github.com/zhfe99/fgm/archive/master.zip);
-2. Set `fgm/` as the current folder;
-2. Run `make` to compile all C++ files;
-3. Run `addPath` to add sub-directories into the path of Matlab.
-4. Run `demoXXX` or `testXXX`.
+2. Set `fgm/` as the current folder in Matlab;
+2. Run `make`  in Matlab to compile all C++ files;
+3. Run `addPath` in Matlab to add sub-directories into the path of Matlab.
+4. Run `demoXXX` or `testXXX` in Matlab.
 
 
 Instructions
