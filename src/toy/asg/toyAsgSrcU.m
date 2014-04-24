@@ -1,8 +1,8 @@
-function wsSrc = toyAsgSrcD(tag, nIn, nOuts, egDen, egDef, varargin)
+function wsSrc = toyAsgSrcU(tag, nIn, nOuts, egDen, egDef, varargin)
 % Generate toy source for assignment problem.
 %
 % Remark
-%   The edge is directed and the edge feature is asymmetric.
+%   The edge is undirected and the edge feature is symmetric.
 %
 % Input
 %   tag      -  shape type
@@ -32,15 +32,15 @@ prex = cellStr(tag, nIn, nOuts, egDef, egDen);
 [svL, path] = psSv(varargin, ...
                    'prex', prex, ...
                    'subx', 'src', ...
-                   'fold', 'toy/asgD');
+                   'fold', 'toy/asgU');
 
 % load
 if svL == 2 && exist(path, 'file')
     wsSrc = matFld(path, 'wsSrc');
-    prInOut('toyAsgSrcD', 'old, %s', prex);
+    prInOut('toyAsgSrcU', 'old, %s', prex);
     return;
 end
-prIn('toyAsgSrcD', 'new, %s', prex);
+prIn('toyAsgSrcU', 'new, %s', prex);
 
 % dimension & #nodes 
 d = 2;
@@ -72,34 +72,34 @@ end
 
 % generate graph
 parGph = st('link', 'rand', 'val', egDen);
-gphs = newGphDs(Pts, parGph);
+gphs = newGphUs(Pts, parGph);
 
-% edge feature for inliers (asymmetric)
-ZIn = rand(nIn);
-ZIn = mdiag(ZIn, 0);
+% edge feature for inliers (symmetric)
+ZIn = triu(rand(nIn), 1);
+ZIn = ZIn + ZIn';
 
 % feature for each graph
 for iG = 1 : mG
-    % edge feature (asymmetric)
+    % edge feature (symmetric)
     ni = ns(iG);
-    Z = rand(ni);
-    Z = mdiag(Z, 0);
+    Z = triu(rand(ni), 1); 
+    Z = Z + Z';
 
     % only re-set edge features for outliers
     Z(1 : nIn, 1 : nIn) = ZIn;
 
     % add noise on the edge feature
-    ZDef = egDef * randn(ni);
-    ZDef = mdiag(ZDef, 0);
+    ZDef = egDef * triu(randn(ni), 1);
+    ZDef = ZDef + ZDef';
     Z = Z + ZDef;
 
     % re-order the edge feature
     Z = Z(ords{iG}, ords{iG});
 
-    % only keep the feature for existed edges because the graph is sparse    
+    % only keep the feature for existed edges because the graph is sparse
     [~, idx] = gphEg2Adj(gphs{iG}.Eg, ni);
     gphs{iG}.XQ = Z(idx);
-    
+
     % node feature (not used in the experiment)
     gphs{iG}.XP = zeros(1, ni);
 end

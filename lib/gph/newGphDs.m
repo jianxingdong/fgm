@@ -1,5 +1,8 @@
-function gphs = newGphAs(Pts, parGph)
+function gphs = newGphDs(Pts, parGph)
 % Connect nodes to generate edges.
+%
+% Remark
+%   The edge is undirected and the edge feature is symmetric.
 %
 % Input
 %   Pts     -  graph node, 1 x mG (cell), d x ni
@@ -11,7 +14,7 @@ function gphs = newGphAs(Pts, parGph)
 %
 % History
 %   create  -  Feng Zhou (zhfe99@gmail.com), 08-11-2011
-%   modify  -  Feng Zhou (zhfe99@gmail.com), 04-27-2012
+%   modify  -  Feng Zhou (zhfe99@gmail.com), 04-24-2014
 
 % dimension
 mG = length(Pts);
@@ -19,5 +22,5 @@ mG = length(Pts);
 % per graph
 gphs = cell(1, mG);
 for iG = 1 : mG
-    gphs{iG} = newGphA(Pts{iG}, parGph);
+    gphs{iG} = newGphD(Pts{iG}, parGph);
 end

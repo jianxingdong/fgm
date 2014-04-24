@@ -2,7 +2,7 @@ function gph = newGphU(Pt, parGph)
 % Generate a graph by connecting points.
 %
 % Remark
-%   The edge is directed and the edge feature is asymmetric.
+%   The edge is undirected and the edge feature is symmetric.
 %
 % Input
 %   Pt       -  graph node, d x n
@@ -23,7 +23,7 @@ function gph = newGphU(Pt, parGph)
 %            
 % History    
 %   create   -  Feng Zhou (zhfe99@gmail.com), 08-11-2011
-%   modify   -  Feng Zhou (zhfe99@gmail.com), 05-07-2013
+%   modify   -  Feng Zhou (zhfe99@gmail.com), 04-24-2014
 
 % dimension
 n = size(Pt, 2);
