@@ -15,10 +15,10 @@ function [X, nIt, objs] = mfwDIter(X0, alp, nItMa, nHst, isObj)
 %
 % History
 %   create  -  Feng Zhou (zhfe99@gmail.com), 01-20-2012
-%   modify  -  Feng Zhou (zhfe99@gmail.com), 05-06-2013
+%   modify  -  Feng Zhou (zhfe99@gmail.com), 06-06-2014
 
 % global variables
-global isGXG isHXH;
+global isGXG isHXH Ct;
 
 objs = zeross(1, nItMa);
 Ys = cell(1, nHst);
@@ -39,7 +39,7 @@ for nIt = 1 : nItMa
     Gr = GrGm + (alp - .5) * GrCon;
 
     % optimal direction
-    Y = gmPosDHun(Gr);
+    Y = gmPosDHun(Gr, Ct);
     V = Y - X0;
 
     % save to history
